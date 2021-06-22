@@ -13,13 +13,19 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/**").fullyAuthenticated()
+        http.authorizeRequests()
+                .antMatchers("/admin/**").hasAnyAuthority("admin")
+                .antMatchers("/user/**").hasAnyAuthority("user")
+                .antMatchers("/**").fullyAuthenticated()
                 .and().formLogin();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("123456").authorities("/");
+        auth.inMemoryAuthentication()
+                .withUser("admin").password("123456").authorities("admin")
+                .and()
+                .withUser("user").password("123456").authorities("user");
     }
 
     @Bean
