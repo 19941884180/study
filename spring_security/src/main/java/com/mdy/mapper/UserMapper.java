@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface UserMapper extends JpaRepository<UserVO,String> {
+public interface UserMapper extends JpaRepository<UserVO, String> {
     List<UserVO> findAll();
+
+    UserVO findByUserName(String userName);
 }
