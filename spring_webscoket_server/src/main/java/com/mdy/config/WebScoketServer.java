@@ -1,4 +1,4 @@
-package com.mdy.server;
+package com.mdy.config;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@ServerEndpoint("/webscoket/{name}")
+@ServerEndpoint("/webscoket")
 @Component
 public class WebScoketServer {
 
